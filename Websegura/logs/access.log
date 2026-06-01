@@ -1,0 +1,125 @@
+[2026-05-19 04:20:49] [REGISTRO] Usuario: Jorge | Usuario registrado exitosamente.
+[2026-05-19 04:21:06] [FALLO_LOGIN] Usuario: Jorge vanegas | Usuario no encontrado.
+[2026-05-19 04:21:12] [FALLO_LOGIN] Usuario: Jorge vanegas | Usuario no encontrado.
+[2026-05-19 04:21:16] [FALLO_LOGIN] Usuario: Jorge vanegas | Usuario no encontrado.
+[2026-05-19 04:21:18] [FALLO_LOGIN] Usuario: Jorge vanegas | Usuario no encontrado.
+[2026-05-19 04:21:20] [FALLO_LOGIN] Usuario: Jorge vanegas | Usuario no encontrado.
+[2026-05-19 04:21:23] [FALLO_LOGIN] Usuario: Jorge vanegas | Usuario no encontrado.
+[2026-05-19 04:21:24] [FALLO_LOGIN] Usuario: Jorge vanegas | Usuario no encontrado.
+[2026-05-19 04:21:30] [FALLO_LOGIN] Usuario: Jorge vanegas | Usuario no encontrado.
+[2026-05-19 04:22:17] [FALLO_LOGIN] Usuario: Jorge | Contraseña incorrecta. Intento 1/3.
+[2026-05-19 04:22:38] [FALLO_LOGIN] Usuario: Jorge | Contraseña incorrecta. Intento 2/3.
+[2026-05-19 04:22:45] [FALLO_LOGIN] Usuario: Jorge | Demasiados intentos. Cuenta bloqueada por 5 minutos.
+[2026-05-19 04:24:38] [FALLO_LOGIN] Usuario: Jorge | Cuenta bloqueada. Espere 4 minuto(s).
+[2026-05-19 04:25:16] [FALLO_LOGIN] Usuario: Jorge  | Cuenta bloqueada. Espere 3 minuto(s).
+[2026-05-19 04:27:08] [FALLO_LOGIN] Usuario: Jorge  | Cuenta bloqueada. Espere 1 minuto(s).
+[2026-05-19 04:27:35] [FALLO_LOGIN] Usuario: Jorge  | Cuenta bloqueada. Espere 1 minuto(s).
+[2026-05-19 04:27:44] [FALLO_LOGIN] Usuario: Jorge  | Cuenta bloqueada. Espere 1 minuto(s).
+[2026-05-19 04:28:18] [FALLO_LOGIN] Usuario: Jorge  | Demasiados intentos. Cuenta bloqueada por 5 minutos.
+[2026-05-20 18:08:07] [FALLO_LOGIN] Usuario: Jorge | Demasiados intentos. Cuenta bloqueada por 5 minutos.
+[2026-05-20 18:10:20] [REGISTRO] Usuario: Miguel | Usuario registrado exitosamente.
+[2026-05-20 18:10:30] [OTP_GENERADO] Usuario: Miguel | Código OTP generado: 877993
+[2026-05-20 18:10:42] [ACCESO_EXITOSO] Usuario: 2 | 2FA validado correctamente.
+[2026-05-20 18:11:46] [LOGOUT] Usuario: 2 | Sesión cerrada.
+[2026-05-20 18:15:16] [FALLO_LOGIN] Usuario: Miguel | Contraseña incorrecta. Intento 1/3.
+[2026-05-20 18:15:30] [OTP_GENERADO] Usuario: Miguel | Código OTP generado: 787406
+[2026-05-20 18:15:46] [ACCESO_EXITOSO] Usuario: 2 | 2FA validado correctamente.
+[2026-05-20 18:19:20] [FALLO_LOGIN] Usuario: ' OR 1=1 -- | Usuario no encontrado.
+[2026-05-20 18:26:19] [FALLO_LOGIN] Usuario: ' OR 1=1 -- | Usuario no encontrado.
+[2026-05-20 18:30:35] [OTP_GENERADO] Usuario: Miguel | Código OTP generado: 547981
+[2026-05-20 18:31:32] [ACCESO_EXITOSO] Usuario: 2 | 2FA validado correctamente.
+[2026-05-20 18:32:10] [LOGOUT] Usuario: 2 | Sesión cerrada.
+[2026-05-27 05:09:26] [REGISTRO] Usuario: Miguel28 | Usuario registrado exitosamente.
+[2026-05-27 05:09:38] [FALLO_LOGIN] Usuario: miguel28 | Usuario no encontrado.
+[2026-05-27 05:10:39] [FALLO_LOGIN] Usuario: vanegasjorge731@gmail.com | Usuario no encontrado.
+[2026-05-27 05:11:01] [REGISTRO] Usuario: mario | Usuario registrado exitosamente.
+[2026-05-27 05:11:13] [FALLO_LOGIN] Usuario: mario28@gmail.com | Usuario no encontrado.
+[2026-05-27 05:12:51] [FALLO_LOGIN] Usuario: mario28@gmail.com | Usuario no encontrado.
+[2026-05-27 05:12:57] [FALLO_LOGIN] Usuario: mario28@gmail.com | Usuario no encontrado.
+[2026-05-27 05:12:59] [FALLO_LOGIN] Usuario: mario28@gmail.com | Usuario no encontrado.
+[2026-05-27 05:13:01] [FALLO_LOGIN] Usuario: mario28@gmail.com | Usuario no encontrado.
+[2026-05-27 05:13:02] [FALLO_LOGIN] Usuario: mario28@gmail.com | Usuario no encontrado.
+[2026-05-27 05:16:19] [FALLO_LOGIN] Usuario: manuel28 | Usuario no encontrado.
+[2026-05-27 05:16:23] [FALLO_LOGIN] Usuario: manuel28 | Usuario no encontrado.
+[2026-05-27 05:16:26] [FALLO_LOGIN] Usuario: manuel28 | Usuario no encontrado.
+[2026-05-27 05:16:28] [FALLO_LOGIN] Usuario: manuel28 | Usuario no encontrado.
+[2026-05-27 05:16:36] [FALLO_LOGIN] Usuario: manuel28 | Usuario no encontrado.
+[2026-05-27 05:22:04] [FALLO_LOGIN] Usuario: jorge | Usuario no encontrado.
+[2026-05-27 05:22:10] [FALLO_LOGIN] Usuario: jorgegegeg | Usuario no encontrado.
+[2026-05-27 05:22:26] [FALLO_LOGIN] Usuario: miguel28 | Usuario no encontrado.
+[2026-05-27 05:22:30] [FALLO_LOGIN] Usuario: miguel28 | Usuario no encontrado.
+[2026-05-27 05:22:38] [FALLO_LOGIN] Usuario: miguel28@gmail.com | Usuario no encontrado.
+[2026-05-27 05:24:38] [FALLO_LOGIN] Usuario: miguel | Usuario no encontrado.
+[2026-05-27 05:25:18] [REGISTRO] Usuario: jorge | Usuario registrado exitosamente.
+[2026-05-27 05:25:26] [OTP_GENERADO] Usuario: jorge | Código OTP generado: 863467
+[2026-05-27 05:27:53] [FALLO_2FA] Usuario: 5 | Código OTP inválido o expirado.
+[2026-05-27 05:28:02] [FALLO_2FA] Usuario: 5 | Código OTP inválido o expirado.
+[2026-05-27 05:28:15] [FALLO_2FA] Usuario: 5 | Código OTP inválido o expirado.
+[2026-05-27 05:28:15] [FALLO_2FA] Usuario: 5 | Código OTP inválido o expirado.
+[2026-05-27 05:28:17] [FALLO_2FA] Usuario: 5 | Código OTP inválido o expirado.
+[2026-05-27 05:28:29] [FALLO_2FA] Usuario: 5 | Código OTP inválido o expirado.
+[2026-05-27 05:28:31] [FALLO_2FA] Usuario: 5 | Código OTP inválido o expirado.
+[2026-05-27 05:28:36] [FALLO_2FA] Usuario: 5 | Código OTP inválido o expirado.
+[2026-05-27 05:31:53] [OTP_GENERADO] Usuario: jorge | Código OTP generado: 820017
+[2026-05-27 05:32:00] [ACCESO_EXITOSO] Usuario: 5 | 2FA validado correctamente.
+[2026-05-27 05:32:18] [LOGOUT] Usuario: 5 | Sesión cerrada.
+[2026-05-27 05:32:24] [FALLO_LOGIN] Usuario: jorge | Contraseña incorrecta. Intento 1/3.
+[2026-05-27 05:32:31] [FALLO_LOGIN] Usuario: jorge | Contraseña incorrecta. Intento 2/3.
+[2026-05-27 05:32:33] [FALLO_LOGIN] Usuario: jorge | Demasiados intentos. Cuenta bloqueada por 5 minutos.
+[2026-05-27 05:34:04] [FALLO_LOGIN] Usuario: jorge | Cuenta bloqueada. Espere 4 minuto(s).
+[2026-05-27 05:34:56] [OTP_GENERADO] Usuario: mario | Código OTP generado: 644071
+[2026-05-27 05:34:59] [ACCESO_EXITOSO] Usuario: 4 | 2FA validado correctamente.
+[2026-05-27 05:35:56] [FALLO_LOGIN] Usuario: jorge | Cuenta bloqueada. Espere 2 minuto(s).
+[2026-05-27 05:36:38] [FALLO_LOGIN] Usuario: jorge | Cuenta bloqueada. Espere 1 minuto(s).
+[2026-05-27 05:38:27] [OTP_GENERADO] Usuario: jorge | Código OTP generado: 607970
+[2026-05-27 05:38:49] [ACCESO_EXITOSO] Usuario: 5 | 2FA validado correctamente.
+[2026-05-27 05:39:04] [LOGOUT] Usuario: 5 | Sesión cerrada.
+[2026-05-27 14:29:57] [OTP_GENERADO] Usuario: jorge | Código OTP generado: 254451
+[2026-05-27 14:30:27] [ACCESO_EXITOSO] Usuario: 5 | 2FA validado correctamente.
+[2026-05-27 14:30:36] [LOGOUT] Usuario: 5 | Sesión cerrada.
+[2026-05-27 14:47:18] [OTP_GENERADO] Usuario: jorge | Código OTP generado: 943995
+[2026-05-27 14:47:35] [ACCESO_EXITOSO] Usuario: 5 | 2FA validado correctamente.
+[2026-05-27 14:55:27] [OTP_GENERADO] Usuario: jorge | Código OTP generado en el servidor.
+[2026-05-27 14:55:49] [ACCESO_EXITOSO] Usuario: 5 | 2FA validado correctamente.
+[2026-05-27 15:07:52] [LOGOUT] Usuario: desconocido | Sesión cerrada.
+[2026-05-27 15:36:08] [REGISTRO] Usuario: Marta | Usuario registrado exitosamente.
+[2026-05-27 15:36:17] [FALLO_LOGIN] Usuario: marta27 | Usuario no encontrado.
+[2026-05-27 15:36:43] [FALLO_LOGIN] Usuario: marta | Usuario no encontrado.
+[2026-05-27 15:43:58] [REGISTRO] Usuario: Juan | Usuario registrado exitosamente.
+[2026-05-27 15:44:12] [FALLO_LOGIN] Usuario: juan | Usuario no encontrado.
+[2026-05-27 15:44:17] [OTP_GENERADO] Usuario: Juan | Código OTP generado en el servidor.
+[2026-05-27 15:54:46] [OTP_GENERADO] Usuario: jorge | Código OTP generado en el servidor.
+[2026-05-27 15:55:41] [OTP_GENERADO] Usuario: jorge | Código OTP generado en el servidor.
+[2026-05-27 15:58:03] [FALLO_LOGIN] Usuario: jorge | Contraseña incorrecta. Intento 1/3.
+[2026-05-27 15:58:09] [OTP_GENERADO] Usuario: jorge | Código OTP generado en el servidor.
+[2026-05-27 15:58:20] [ACCESO_EXITOSO] Usuario: 5 | 2FA validado correctamente.
+[2026-05-27 15:58:23] [LOGOUT] Usuario: 5 | Sesión cerrada.
+[2026-05-27 15:58:38] [OTP_GENERADO] Usuario: jorge | Código OTP generado en el servidor.
+[2026-05-27 16:01:52] [OTP_GENERADO] Usuario: jorge | Código OTP generado en el servidor.
+[2026-05-27 16:02:03] [ACCESO_EXITOSO] Usuario: 5 | 2FA validado correctamente.
+[2026-05-27 16:04:04] [FALLO_LOGIN] Usuario: jorge | Contraseña incorrecta. Intento 1/3.
+[2026-05-27 16:04:09] [OTP_GENERADO] Usuario: jorge | Código OTP generado en el servidor.
+[2026-05-27 16:04:17] [ACCESO_EXITOSO] Usuario: 5 | 2FA validado correctamente.
+[2026-05-27 16:05:14] [OTP_GENERADO] Usuario: jorge | Código OTP generado en el servidor.
+[2026-05-27 16:07:16] [FALLO_2FA] Usuario: 5 | Código OTP inválido o expirado.
+[2026-05-27 16:07:27] [OTP_GENERADO] Usuario: jorge | Código OTP generado en el servidor.
+[2026-05-27 16:07:36] [ACCESO_EXITOSO] Usuario: 5 | 2FA validado correctamente.
+[2026-05-27 16:08:01] [LOGOUT] Usuario: 5 | Sesión cerrada.
+[2026-05-27 16:27:56] [FALLO_LOGIN] Usuario: jorge 'OR 1=1-- | Usuario no encontrado.
+[2026-05-27 16:28:03] [FALLO_LOGIN] Usuario: jorge 'OR 1=1-- | Usuario no encontrado.
+[2026-05-27 16:45:31] [OTP_GENERADO] Usuario: jorge  | Código OTP generado en el servidor.
+[2026-05-27 16:45:37] [ACCESO_EXITOSO] Usuario: 5 | 2FA validado correctamente.
+[2026-05-27 16:45:42] [LOGOUT] Usuario: 5 | Sesión cerrada.
+[2026-05-27 19:26:14] [REGISTRO] Usuario: manuel | Usuario registrado exitosamente.
+[2026-05-27 19:26:36] [FALLO_LOGIN] Usuario: manuel | Contraseña incorrecta. Intento 1/3.
+[2026-05-27 19:27:48] [OTP_GENERADO] Usuario: jorge | Código OTP generado en el servidor.
+[2026-05-27 19:28:13] [ACCESO_EXITOSO] Usuario: 5 | 2FA validado correctamente.
+[2026-05-27 19:28:19] [LOGOUT] Usuario: 5 | Sesión cerrada.
+[2026-05-27 19:30:06] [OTP_GENERADO] Usuario: jorge | Código OTP generado en el servidor.
+[2026-05-27 19:31:51] [OTP_GENERADO] Usuario: jorge | Código OTP generado en el servidor.
+[2026-05-27 19:32:20] [ACCESO_EXITOSO] Usuario: 5 | 2FA validado correctamente.
+[2026-05-27 19:34:07] [LOGOUT] Usuario: 5 | Sesión cerrada.
+[2026-05-27 19:43:24] [REGISTRO] Usuario: oliver | Usuario registrado exitosamente.
+[2026-05-27 19:43:37] [OTP_GENERADO] Usuario: oliver | Código OTP generado en el servidor.
+[2026-05-27 19:44:27] [ACCESO_EXITOSO] Usuario: 9 | 2FA validado correctamente.
+[2026-05-27 19:46:31] [LOGOUT] Usuario: 9 | Sesión cerrada.

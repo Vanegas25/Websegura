@@ -1,0 +1,149 @@
+﻿@model Websegura.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - WebSegura</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-gradient: radial-gradient(circle at 50% 50%, #1a162b, #08060f);
+            --card-bg: rgba(25, 22, 43, 0.75);
+            --primary-accent: #ff477e;
+            --primary-hover: #e03265;
+            --input-focus-glow: rgba(255, 71, 126, 0.2);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .login-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.075);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Estilos para inputs flotantes oscuros */
+        .form-floating > .form-control {
+            background-color: rgba(13, 11, 26, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 10px;
+        }
+
+            .form-floating > .form-control:focus {
+                background-color: rgba(13, 11, 26, 0.9);
+                border-color: var(--primary-accent);
+                box-shadow: 0 0 0 4px var(--input-focus-glow);
+                color: #fff;
+            }
+
+        .form-floating > label {
+            color: #a0aed0;
+        }
+
+        .form-floating > .form-control:focus ~ label,
+        .form-floating > .form-control:not(:placeholder-shown) ~ label {
+            color: var(--primary-accent);
+        }
+
+        /* Botón personalizado */
+        .btn-custom {
+            background: linear-gradient(135deg, var(--primary-accent), #ff6b8b);
+            border: none;
+            color: white;
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 12px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-custom:hover {
+                background: linear-gradient(135deg, var(--primary-hover), var(--primary-accent));
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(255, 71, 126, 0.4);
+                color: white;
+            }
+
+            .btn-custom:active {
+                transform: translateY(0);
+            }
+
+        .register-link {
+            color: #a0aed0;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+            .register-link:hover {
+                color: var(--primary-accent);
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container d-flex justify-content-center p-3">
+        <div class="login-card p-4 p-sm-5">
+
+            <div class="text-center mb-4">
+                <div class="d-inline-flex align-items-center justify-content-center bg-opacity-10 bg-danger text-danger rounded-circle mb-3" style="width: 60px; height: 60px; background-color: rgba(255, 71, 126, 0.15) !important;">
+                    <i class="bi bi-shield-lock-fill fs-3" style="color: var(--primary-accent);"></i>
+                </div>
+                <h2 class="fw-bold text-white mb-1" style="letter-spacing: -0.5px;">Bienvenido</h2>
+                <p class="text-white small">Ingresa tus credenciales para continuar</p>
+            </div>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger d-flex align-items-center role="alert" style="background: rgba(220, 53, 69, 0.15); border-color: rgba(220, 53, 69, 0.3); color: #ea868f; border-radius: 10px;">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    <div class="small">@ViewBag.Error</div>
+                </div>
+            }
+
+            <form method="post" autocomplete="off">
+                <div class="form-floating mb-3">
+                    <input asp-for="Username" type="text" class="form-control" id="floatingUser" placeholder="Usuario" required autocomplete="username" />
+                    <label for="floatingUser"><i class="bi bi-person me-2"></i>Usuario</label>
+                </div>
+
+                <div class="form-floating mb-4">
+                    <input asp-for="Password" type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" required />
+                    <label for="floatingPassword"><i class="bi bi-key me-2"></i>Contraseña</label>
+                </div>
+
+                <button type="submit" class="btn btn-custom w-100 py-2.5 mb-3 shadow-sm">
+                    Iniciar Sesión <i class="bi bi-arrow-right-short ms-1"></i>
+                </button>
+            </form>
+
+            <div class="text-center mt-4">
+                <a href="/Auth/Register" class="register-link small">
+                    ¿No tienes cuenta? <span class="fw-semibold text-decoration-underline">Regístrate</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

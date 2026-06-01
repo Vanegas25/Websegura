@@ -1,0 +1,185 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel Seguro - WebSegura</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --bg-gradient: radial-gradient(circle at 50% 50%, #1a162b, #08060f);
+            --card-bg: rgba(25, 22, 43, 0.6);
+            --primary-accent: #ff477e;
+            --primary-hover: #e03265;
+            --success-accent: #2ed573;
+            --success-glow: rgba(46, 213, 115, 0.15);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .navbar-custom {
+            background: rgba(13, 11, 26, 0.8) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 47, 126, 0.2);
+        }
+
+        .welcome-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(46, 213, 115, 0.2);
+            border-left: 5px solid var(--success-accent);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .doc-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+            .doc-card:hover {
+                border-color: var(--primary-accent);
+                transform: translateY(-4px);
+                box-shadow: 0 10px 20px rgba(255, 71, 126, 0.15);
+            }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        .text-brand {
+            color: var(--primary-accent);
+            text-shadow: 0 0 10px rgba(255, 71, 126, 0.3);
+        }
+
+        .text-accent {
+            color: #a0aed0;
+        }
+
+        .badge-custom {
+            background-color: var(--success-glow);
+            color: var(--success-accent);
+            border: 1px solid rgba(46, 213, 115, 0.3);
+        }
+
+        .icon-box {
+            font-size: 2rem;
+            color: var(--primary-accent);
+            opacity: 0.85;
+            transition: transform 0.3s ease;
+        }
+
+        .doc-card:hover .icon-box {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-custom py-3 shadow-sm sticky-top">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+            <h1 class="navbar-brand m-0 fw-bold text-brand fs-4">
+                <i class="bi bi-lock-fill me-2"></i>Panel Seguro — WebSegura
+            </h1>
+            <div class="d-flex align-items-center gap-3">
+                <span class="fw-medium text-accent d-none d-sm-inline fs-6">
+                    <i class="bi bi-person-circle text-white-50 me-1"></i> @ViewBag.Username
+                </span>
+                <a href="/Auth/Logout" class="btn btn-outline-danger btn-sm px-3 rounded-pill fw-semibold">
+                    Cerrar sesión <i class="bi bi-box-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5" style="max-width: 960px;">
+
+        <div class="welcome-card p-4 rounded-4 mb-5">
+            <div class="d-flex align-items-center gap-2 mb-2">
+                <h2 class="h4 m-0 fw-bold" style="color: var(--success-accent);">
+                    <i class="bi bi-shield-check me-1"></i> Acceso Concedido
+                </h2>
+            </div>
+            <p class="text-white-50 mb-4">
+                Bienvenido de vuelta, <strong class="text-white">@ViewBag.Username</strong>. Has completado con éxito la autenticación multifactor (2FA).
+            </p>
+            <span class="badge badge-custom px-3 py-2 rounded-pill fs-7 fw-medium">
+                <i class="bi bi-shield-lock-fill me-1"></i> Sesión protegida · Expira tras 10 min de inactividad
+            </span>
+        </div>
+
+        <h3 class="h6 fw-bold text-uppercase tracking-wider mb-4 text-white-50" style="letter-spacing: 1.5px;">
+            <i class="bi bi-folder2-open me-2 text-brand"></i> Repositorio Virtual Protegido
+        </h3>
+
+        <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3">
+
+            <div class="col">
+                <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer">
+                    <div class="icon-box mb-3"><i class="bi bi-file-earmark-text-fill"></i></div>
+                    <h5 class="card-title text-white fs-6 fw-bold mb-1">Informe Q1 2025</h5>
+                    <p class="card-text text-white-50 small m-0">Documento confidencial</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer">
+                    <div class="icon-box mb-3"><i class="bi bi-bar-chart-line-fill"></i></div>
+                    <h5 class="card-title text-white fs-6 fw-bold mb-1">Datos Financieros</h5>
+                    <p class="card-text text-white-50 small m-0">Acceso restringido</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer">
+                    <div class="icon-box mb-3"><i class="bi bi-key-fill"></i></div>
+                    <h5 class="card-title text-white fs-6 fw-bold mb-1">Claves API</h5>
+                    <p class="card-text text-white-50 small m-0">Solo administradores</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer">
+                    <div class="icon-box mb-3"><i class="bi bi-journal-text"></i></div>
+                    <h5 class="card-title text-white fs-6 fw-bold mb-1">Actas de Reunión</h5>
+                    <p class="card-text text-white-50 small m-0">Uso interno</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer">
+                    <div class="icon-box mb-3"><i class="bi bi-collection-fill"></i></div>
+                    <h5 class="card-title text-white fs-6 fw-bold mb-1">Contratos 2025</h5>
+                    <p class="card-text text-white-50 small m-0">Confidencial</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer">
+                    <div class="icon-box mb-3"><i class="bi bi-database-fill-lock"></i></div>
+                    <h5 class="card-title text-white fs-6 fw-bold mb-1">Backups del Sistema</h5>
+                    <p class="card-text text-white-50 small m-0">Acceso restringido</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
