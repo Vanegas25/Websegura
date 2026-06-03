@@ -19,6 +19,8 @@
             --primary-hover: #e03265;
             --success-accent: #2ed573;
             --success-glow: rgba(46, 213, 115, 0.15);
+            --bg-input: rgba(13, 11, 26, 0.7);
+            --warning-accent: #ffa502;
         }
 
         body {
@@ -49,6 +51,7 @@
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
         }
 
             .doc-card:hover {
@@ -77,15 +80,72 @@
         }
 
         .icon-box {
-            font-size: 2rem;
-            color: var(--primary-accent);
-            opacity: 0.85;
+            font-size: 2.2rem;
+            color: #ffb703;
             transition: transform 0.3s ease;
         }
 
         .doc-card:hover .icon-box {
             transform: scale(1.1);
-            opacity: 1;
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, var(--primary-accent), #ff6b8b);
+            border: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+            .btn-custom:hover {
+                background: linear-gradient(135deg, var(--primary-hover), var(--primary-accent));
+                box-shadow: 0 5px 15px rgba(255, 71, 126, 0.3);
+                color: white;
+            }
+
+        /* Estilos del modal adaptados a la paleta oscura */
+        .modal-content-custom {
+            background: rgba(25, 22, 43, 0.95);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-control-custom {
+            background-color: var(--bg-input) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #fff !important;
+        }
+
+            .form-control-custom:focus {
+                border-color: var(--primary-accent) !important;
+                box-shadow: 0 0 0 3px rgba(255, 71, 126, 0.2) !important;
+            }
+
+        .btn-delete-folder {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.3);
+            transition: color 0.2s, transform 0.2s;
+            z-index: 10;
+        }
+
+            .btn-delete-folder:hover {
+                color: #ff4757;
+                transform: scale(1.15);
+            }
+
+        /* Feedback visual rápido */
+        .invalid-feedback-custom {
+            color: var(--primary-accent);
+            font-size: 0.85rem;
+            display: none;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -98,7 +158,7 @@
             </h1>
             <div class="d-flex align-items-center gap-3">
                 <span class="fw-medium text-accent d-none d-sm-inline fs-6">
-                    <i class="bi bi-person-circle text-white-50 me-1"></i> @ViewBag.Username
+                    <i class="bi bi-person-circle text-white-50 me-1"></i> <span id="currentUser">@ViewBag.Username</span>
                 </span>
                 <a href="/Auth/Logout" class="btn btn-outline-danger btn-sm px-3 rounded-pill fw-semibold">
                     Cerrar sesión <i class="bi bi-box-arrow-right ms-1"></i>
@@ -123,63 +183,232 @@
             </span>
         </div>
 
-        <h3 class="h6 fw-bold text-uppercase tracking-wider mb-4 text-white-50" style="letter-spacing: 1.5px;">
-            <i class="bi bi-folder2-open me-2 text-brand"></i> Repositorio Virtual Protegido
-        </h3>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="h6 fw-bold text-uppercase tracking-wider m-0 text-white-50" style="letter-spacing: 1.5px;">
+                <i class="bi bi-folder2-open me-2 text-brand"></i> Mi Almacenamiento Simulado
+            </h3>
+            <button class="btn btn-custom btn-sm px-3 rounded-pill fw-semibold" data-bs-toggle="modal" data-bs-target="#createFolderModal">
+                <i class="bi bi-folder-plus me-1"></i> Nueva Carpeta
+            </button>
+        </div>
 
-        <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3">
-
-            <div class="col">
-                <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer">
-                    <div class="icon-box mb-3"><i class="bi bi-file-earmark-text-fill"></i></div>
-                    <h5 class="card-title text-white fs-6 fw-bold mb-1">Informe Q1 2025</h5>
-                    <p class="card-text text-white-50 small m-0">Documento confidencial</p>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer">
-                    <div class="icon-box mb-3"><i class="bi bi-bar-chart-line-fill"></i></div>
-                    <h5 class="card-title text-white fs-6 fw-bold mb-1">Datos Financieros</h5>
-                    <p class="card-text text-white-50 small m-0">Acceso restringido</p>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer">
-                    <div class="icon-box mb-3"><i class="bi bi-key-fill"></i></div>
-                    <h5 class="card-title text-white fs-6 fw-bold mb-1">Claves API</h5>
-                    <p class="card-text text-white-50 small m-0">Solo administradores</p>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer">
-                    <div class="icon-box mb-3"><i class="bi bi-journal-text"></i></div>
-                    <h5 class="card-title text-white fs-6 fw-bold mb-1">Actas de Reunión</h5>
-                    <p class="card-text text-white-50 small m-0">Uso interno</p>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer">
-                    <div class="icon-box mb-3"><i class="bi bi-collection-fill"></i></div>
-                    <h5 class="card-title text-white fs-6 fw-bold mb-1">Contratos 2025</h5>
-                    <p class="card-text text-white-50 small m-0">Confidencial</p>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer">
-                    <div class="icon-box mb-3"><i class="bi bi-database-fill-lock"></i></div>
-                    <h5 class="card-title text-white fs-6 fw-bold mb-1">Backups del Sistema</h5>
-                    <p class="card-text text-white-50 small m-0">Acceso restringido</p>
-                </div>
-            </div>
-
+        <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3" id="foldersContainer">
         </div>
     </main>
 
+    <div class="modal fade" id="createFolderModal" tabindex="-1" aria-labelledby="createFolderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-custom">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-white" id="createFolderModalLabel">
+                        <i class="bi bi-folder-plus me-2 text-brand"></i>Crear Nueva Carpeta Virtual
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <div class="mb-3">
+                        <label for="folderNameInput" class="form-label text-white-50 small">Nombre de la carpeta</label>
+                        <input type="text" class="form-control form-control-custom p-2.5" id="folderNameInput" placeholder="Ej: Reportes de Auditoría" autocomplete="off" maxlength="30">
+                        <div id="folderNameFeedback" class="invalid-feedback-custom">Por favor ingresa un nombre para la carpeta.</div>
+                    </div>
+                    <div class="mb-0">
+                        <label for="folderDescInput" class="form-label text-white-50 small">Descripción o Clasificación (Opcional)</label>
+                        <input type="text" class="form-control form-control-custom p-2.5" id="folderDescInput" placeholder="Ej: Confidencial / Solo QA" autocomplete="off" maxlength="40">
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-secondary btn-sm px-3 rounded-pill fw-medium" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-custom btn-sm px-4 rounded-pill fw-semibold" id="saveFolderBtn">Crear Carpeta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm" style="max-width: 380px;">
+            <div class="modal-content modal-content-custom border-danger border-opacity-25">
+                <div class="modal-body text-center py-4">
+                    <div class="text-danger fs-1 mb-2">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                    </div>
+                    <h5 class="fw-bold text-white mb-2">¿Eliminar carpeta?</h5>
+                    <p class="text-white-50 small mb-4">Esta acción removerá la carpeta simulada de tu entorno local.</p>
+                    <div class="d-flex justify-content-center gap-2">
+                        <button type="button" class="btn btn-secondary btn-sm px-3 rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger btn-sm px-3 rounded-pill fw-semibold" id="confirmDeleteBtn">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="infoFolderModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-custom">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-white">
+                        <i class="bi bi-shield-lock-fill me-2" style="color: var(--success-accent);"></i>Entorno Protegido
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4 text-center">
+                    <div class="icon-box mb-3" style="font-size: 3.5rem;"><i class="bi bi-folder-check" style="color: var(--success-accent);"></i></div>
+                    <h4 class="h5 text-white fw-bold mb-2" id="infoModalTitle"></h4>
+                    <p class="text-white-50 small mx-auto" style="max-width: 85%;">
+                        Abriendo repositorio simulado de manera cifrada. Actualmente se encuentra vacío y protegido dentro del entorno aislado de tu sesión local.
+                    </p>
+                </div>
+                <div class="modal-footer border-0 pt-0 justify-content-center">
+                    <button type="button" class="btn btn-custom btn-sm px-5 rounded-pill" data-bs-dismiss="modal">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        const username = document.getElementById('currentUser').innerText.trim();
+        const storageKey = `WebSegura_Folders_${username}`;
+
+        const defaultFolders = [
+            { id: 1, title: "Informe Q1 2026", desc: "Documento confidencial" },
+            { id: 2, title: "Datos Financieros", desc: "Acceso restringido" },
+            { id: 3, title: "Claves API", desc: "Solo administradores" }
+        ];
+
+        let folderIdToDelete = null;
+
+        // Elementos de la interfaz
+        const foldersContainer = document.getElementById('foldersContainer');
+        const saveFolderBtn = document.getElementById('saveFolderBtn');
+        const folderNameInput = document.getElementById('folderNameInput');
+        const folderDescInput = document.getElementById('folderDescInput');
+        const folderNameFeedback = document.getElementById('folderNameFeedback');
+        const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+
+        // Instancias de Modals de Bootstrap
+        const deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+        const infoModal = new bootstrap.Modal(document.getElementById('infoFolderModal'));
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFolders();
+        });
+
+        function getFolders() {
+            const stored = localStorage.getItem(storageKey);
+            if (!stored) {
+                localStorage.setItem(storageKey, JSON.stringify(defaultFolders));
+                return defaultFolders;
+            }
+            return JSON.parse(stored);
+        }
+
+        function renderFolders() {
+            const folders = getFolders();
+            foldersContainer.innerHTML = '';
+
+            if (folders.length === 0) {
+                foldersContainer.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <i class="bi bi-folder-symlink fs-1 text-white-50 opacity-25"></i>
+                        <p class="text-white-50 mt-2 small">No hay carpetas creadas. ¡Crea una nueva arriba!</p>
+                    </div>`;
+                return;
+            }
+
+            folders.forEach(folder => {
+                const col = document.createElement('div');
+                col.className = 'col';
+                col.innerHTML = `
+                    <div class="card h-100 doc-card p-4 text-center rounded-4 shadow-sm cursor-pointer" onclick="openFolderSim('${escapeJS(folder.title)}')">
+                        <button class="btn-delete-folder" onclick="triggerDelete(event, ${folder.id})" title="Eliminar carpeta">
+                            <i class="bi bi-trash3-fill"></i>
+                        </button>
+                        <div class="icon-box mb-3"><i class="bi bi-folder-fill"></i></div>
+                        <h5 class="card-title text-white fs-6 fw-bold mb-1">${escapeHTML(folder.title)}</h5>
+                        <p class="card-text text-white-50 small m-0">${escapeHTML(folder.desc || 'Carpeta vacía')}</p>
+                    </div>
+                `;
+                foldersContainer.appendChild(col);
+            });
+        }
+
+        // Guardar carpeta
+        saveFolderBtn.addEventListener('click', () => {
+            const title = folderNameInput.value.trim();
+            const desc = folderDescInput.value.trim();
+
+            if (!title) {
+                folderNameInput.classList.add('is-invalid');
+                folderNameFeedback.style.display = 'block';
+                return;
+            } else {
+                folderNameInput.classList.remove('is-invalid');
+                folderNameFeedback.style.display = 'none';
+            }
+
+            const folders = getFolders();
+            const newFolder = {
+                id: Date.now(),
+                title: title,
+                desc: desc || "Carpeta vacía"
+            };
+
+            folders.push(newFolder);
+            localStorage.setItem(storageKey, JSON.stringify(folders));
+
+            folderNameInput.value = '';
+            folderDescInput.value = '';
+
+            const modalEl = document.getElementById('createFolderModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalEl);
+            modalInstance.hide();
+
+            renderFolders();
+        });
+
+        // Limpiar validaciones al cerrar modal de creación
+        document.getElementById('createFolderModal').addEventListener('hidden.bs.modal', () => {
+            folderNameInput.classList.remove('is-invalid');
+            folderNameFeedback.style.display = 'none';
+        });
+
+        // Lanzar confirmación de borrado elegante
+        window.triggerDelete = function(event, id) {
+            event.stopPropagation();
+            folderIdToDelete = id;
+            deleteModal.show();
+        }
+
+        // Ejecutar borrado definitivo al confirmar
+        confirmDeleteBtn.addEventListener('click', () => {
+            if (folderIdToDelete) {
+                let folders = getFolders();
+                folders = folders.filter(f => f.id !== folderIdToDelete);
+                localStorage.setItem(storageKey, JSON.stringify(folders));
+                renderFolders();
+                deleteModal.hide();
+                folderIdToDelete = null;
+            }
+        });
+
+        // Apertura simulada bonita
+        window.openFolderSim = function(title) {
+            document.getElementById('infoModalTitle').innerText = title;
+            infoModal.show();
+        }
+
+        // Helpers de escape de strings para seguridad
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g,
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        function escapeJS(str) {
+            return str.replace(/'/g, "\\'");
+        }
+    </script>
 </body>
 </html>

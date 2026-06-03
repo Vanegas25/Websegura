@@ -162,3 +162,28 @@
 [2026-06-03 05:02:30] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
 [2026-06-03 05:02:52] [ACCESO_EXITOSO] Usuario: 1 | 2FA validado correctamente.
 [2026-06-03 05:03:13] [LOGOUT] Usuario: 1 | Sesión cerrada.
+[2026-06-03 05:13:50] [SOLICITUD_RESET_PASS] Usuario: vanegasjorge731@gmail.com | Correo de recuperación enviado exitosamente.
+[2026-06-03 05:14:40] [RESET_PASS_EXITOSO] Usuario: vanegasjorge731@gmail.com | Contraseña restablecida correctamente.
+[2026-06-03 05:14:52] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-03 05:15:03] [ACCESO_EXITOSO] Usuario: 1 | 2FA validado correctamente.
+[2026-06-03 05:15:12] [LOGOUT] Usuario: 1 | Sesión cerrada.
+[2026-06-03 05:18:35] [FALLO_LOGIN] Usuario: Jorge | Contraseña incorrecta.
+[2026-06-03 05:18:53] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-03 05:19:11] [ACCESO_EXITOSO] Usuario: 1 | 2FA validado correctamente.
+[2026-06-03 05:20:52] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-03 05:21:02] [ACCESO_EXITOSO] Usuario: 1 | 2FA validado correctamente.
+[2026-06-03 05:22:14] [LOGOUT] Usuario: 1 | Sesión cerrada.
+[2026-06-03 14:11:06] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-03 14:11:24] [ACCESO_EXITOSO] Usuario: 1 | 2FA validado correctamente.
+[2026-06-03 14:12:00] [LOGOUT] Usuario: 1 | Sesión cerrada.
+[2026-06-03 14:19:09] [REGISTRO] Usuario: Manuel | Usuario registrado exitosamente.
+[2026-06-03 14:19:26] [OTP_GENERADO] Usuario: Manuel | Código OTP generado en el servidor.
+[2026-06-03 14:20:51] [OTP_GENERADO] Usuario: Manuel | Código OTP generado en el servidor.
+[2026-06-03 14:23:08] [REGISTRO] Usuario: Manuel727 | Usuario registrado exitosamente.
+[2026-06-03 14:23:24] [OTP_GENERADO] Usuario: Manuel727 | Código OTP generado en el servidor.
+[2026-06-03 14:23:42] [ACCESO_EXITOSO] Usuario: 3 | 2FA validado correctamente.
+[2026-06-03 14:24:23] [LOGOUT] Usuario: 3 | Sesión cerrada.
+[2026-06-03 14:24:37] [FALLO_LOGIN] Usuario: jorge | Usuario no encontrado.
+[2026-06-03 14:24:47] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-03 14:25:01] [ACCESO_EXITOSO] Usuario: 1 | 2FA validado correctamente.
+[2026-06-03 14:25:38] [LOGOUT] Usuario: 1 | Sesión cerrada.
