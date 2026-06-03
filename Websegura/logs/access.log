@@ -123,3 +123,42 @@
 [2026-05-27 19:43:37] [OTP_GENERADO] Usuario: oliver | Código OTP generado en el servidor.
 [2026-05-27 19:44:27] [ACCESO_EXITOSO] Usuario: 9 | 2FA validado correctamente.
 [2026-05-27 19:46:31] [LOGOUT] Usuario: 9 | Sesión cerrada.
+[2026-06-02 14:56:24] [REGISTRO] Usuario: Jorge | Usuario registrado exitosamente.
+[2026-06-02 14:57:12] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-02 14:58:40] [FALLO_2FA] Usuario: 1 | Código OTP inválido o expirado.
+[2026-06-02 14:58:48] [FALLO_2FA] Usuario: 1 | Código OTP inválido o expirado.
+[2026-06-02 14:58:57] [FALLO_LOGIN] Usuario: Jorge | Contraseña incorrecta.
+[2026-06-02 14:59:34] [FALLO_LOGIN] Usuario: Jorge | Contraseña incorrecta.
+[2026-06-02 14:59:37] [FALLO_LOGIN] Usuario: Jorge | Cuenta bloqueada.
+[2026-06-02 14:59:47] [FALLO_LOGIN] Usuario: Jorge | Cuenta bloqueada.
+[2026-06-02 15:10:04] [FALLO_LOGIN] Usuario: Jorge | Cuenta bloqueada.
+[2026-06-02 15:11:17] [FALLO_LOGIN] Usuario: jorge | Usuario no encontrado.
+[2026-06-02 15:11:30] [FALLO_LOGIN] Usuario: Jorge | Cuenta bloqueada.
+[2026-06-02 15:26:54] [FALLO_LOGIN] Usuario: Jorge | Cuenta bloqueada.
+[2026-06-03 00:55:56] [FALLO_LOGIN] Usuario: jorge | Usuario no encontrado.
+[2026-06-03 00:56:02] [FALLO_LOGIN] Usuario: jorge | Usuario no encontrado.
+[2026-06-03 00:56:05] [FALLO_LOGIN] Usuario: jorge | Usuario no encontrado.
+[2026-06-03 00:56:09] [INTENTO_BLOQUEADO] Usuario: jorge | El usuario intentó ingresar estando suspendido.
+[2026-06-03 00:56:16] [INTENTO_BLOQUEADO] Usuario: jorge | El usuario intentó ingresar estando suspendido.
+[2026-06-03 00:56:47] [INTENTO_BLOQUEADO] Usuario: jorge | El usuario intentó ingresar estando suspendido.
+[2026-06-03 00:56:52] [FALLO_LOGIN] Usuario: rerer | Usuario no encontrado.
+[2026-06-03 00:57:43] [INTENTO_BLOQUEADO] Usuario: jorge | El usuario intentó ingresar estando suspendido.
+[2026-06-03 04:40:19] [SOLICITUD_RESET_PASS] Usuario: vanegasjorge731@gmail.com | Correo de recuperación enviado exitosamente.
+[2026-06-03 04:44:31] [SOLICITUD_RESET_PASS] Usuario: vanegasjorge731@gmail.com | Correo de recuperación enviado exitosamente.
+[2026-06-03 04:49:30] [SOLICITUD_RESET_PASS] Usuario: vanegasjorge731@gmail.com | Correo de recuperación enviado exitosamente.
+[2026-06-03 04:50:07] [RESET_PASS_EXITOSO] Usuario: vanegasjorge731@gmail.com | Contraseña restablecida correctamente.
+[2026-06-03 04:50:16] [FALLO_LOGIN] Usuario: jorge | Usuario no encontrado.
+[2026-06-03 04:50:22] [FALLO_LOGIN] Usuario: jorge | Usuario no encontrado.
+[2026-06-03 04:50:51] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-03 04:51:09] [FALLO_2FA] Usuario: 1 | Código OTP inválido o expirado.
+[2026-06-03 04:51:12] [FALLO_2FA] Usuario: 1 | Código OTP inválido o expirado.
+[2026-06-03 04:54:49] [SOLICITUD_RESET_PASS] Usuario: vanegasjorge731@gmail.com | Correo de recuperación enviado exitosamente.
+[2026-06-03 04:55:05] [RESET_PASS_EXITOSO] Usuario: vanegasjorge731@gmail.com | Contraseña restablecida correctamente.
+[2026-06-03 04:55:12] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-03 04:58:37] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-03 04:58:59] [FALLO_2FA] Usuario: 1 | Código OTP inválido o expirado.
+[2026-06-03 04:59:05] [FALLO_2FA] Usuario: 1 | Código OTP inválido o expirado.
+[2026-06-03 05:02:25] [FALLO_LOGIN] Usuario: Jorge | Contraseña incorrecta.
+[2026-06-03 05:02:30] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-03 05:02:52] [ACCESO_EXITOSO] Usuario: 1 | 2FA validado correctamente.
+[2026-06-03 05:03:13] [LOGOUT] Usuario: 1 | Sesión cerrada.

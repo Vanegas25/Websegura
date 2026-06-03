@@ -1,29 +1,31 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Websegura.Data;
+﻿using Supabase; // 1. Añade esto
 using Websegura.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-// 🔄 Configuración para SQLite
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=websegura.db"));
+// 2. ELIMINA EL AddDbContext de SQLite
+// builder.Services.AddDbContext<AppDbContext>(options => ...);
 
-// 🔑 Inyección de tus servicios del sistema
+// 3. REGISTRA SUPABASE COMO SINGLETON (para usarlo en tus servicios)
+var supabaseUrl = builder.Configuration["Supabase:Url"];
+var supabaseKey = builder.Configuration["Supabase:Key"];
+
+builder.Services.AddSingleton<Supabase.Client>(provider =>
+    new Supabase.Client(supabaseUrl, supabaseKey, new SupabaseOptions
+    {
+        AutoRefreshToken = true,
+        AutoConnectRealtime = true
+    }));
+
+// 🔑 Tus servicios (ahora recibirán el cliente Supabase)
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<OtpService>();
 builder.Services.AddSingleton<LogService>();
-
-// ✉️ REGISTRO DEL SERVICIO DE CORREO (Añadido aquí)
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(10);
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-});
+builder.Services.AddSession(options => { /* ... tus opciones ... */ });
 
 var app = builder.Build();
 
@@ -35,11 +37,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Auth}/{action=Login}/{id?}");
 
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    // Si el archivo .db no existe, lo creará automáticamente al arrancar
-    db.Database.EnsureCreated();
-}
+// 4. ELIMINA EL BLOQUE "db.Database.EnsureCreated()"
+// Ya no necesitas inicializar la base de datos localmente.
 
 app.Run();

@@ -1,29 +1,32 @@
-﻿using System;
-using System.Linq;
-using Microsoft.AspNetCore.Identity; // <- Usamos la seguridad oficial y nativa de .NET
-using Websegura.Data;
+﻿using Microsoft.AspNetCore.Identity;
+using Supabase;
 using Websegura.Models;
+using static Supabase.Postgrest.Constants;
+using System;
+using System.Threading.Tasks;
 
 namespace Websegura.Services
 {
     public class UserService
     {
-        private readonly AppDbContext _db;
-        // Instanciamos el hash de contraseñas oficial de .NET para el modelo User
+        private readonly Supabase.Client _supabase;
         private readonly PasswordHasher<User> _hasher = new PasswordHasher<User>();
 
-        public UserService(AppDbContext db)
+        public UserService(Supabase.Client supabase)
         {
-            _db = db;
+            _supabase = supabase;
         }
 
-        public bool Register(string username, string email, string password)
+        public async Task<bool> Register(string username, string email, string password)
         {
             username = username.Trim();
-            email = email.Trim();
+            email = email.Trim().ToLower();
 
-            if (_db.Users.Any(u => u.Username == username))
-                return false;
+            var existing = await _supabase.From<User>()
+                .Filter("Username", Operator.Equals, username)
+                .Single();
+
+            if (existing != null) return false;
 
             var user = new User
             {
@@ -31,53 +34,113 @@ namespace Websegura.Services
                 Email = email
             };
 
-            // Hashea la contraseña de forma nativa y segura
             user.PasswordHash = _hasher.HashPassword(user, password);
 
-            _db.Users.Add(user);
-            _db.SaveChanges();
+            await _supabase.From<User>().Insert(user);
             return true;
         }
 
-        public (bool success, string message, User? user) Login(string username, string password)
+        public async Task<(bool success, string message, User? user)> Login(string username, string password)
         {
             username = username.Trim();
 
-            var user = _db.Users.FirstOrDefault(u => u.Username == username);
+            var user = await _supabase.From<User>()
+               .Filter("Username", Operator.Equals, username)
+                .Single();
 
             if (user == null)
                 return (false, "Usuario no encontrado.", null);
 
-            if (user.LockedUntil.HasValue && user.LockedUntil > DateTime.UtcNow)
+            if (user.LockedUntil.HasValue && user.LockedUntil.Value.ToUniversalTime() > DateTime.UtcNow)
             {
-                var mins = (int)(user.LockedUntil.Value - DateTime.UtcNow).TotalMinutes + 1;
+                var mins = (int)(user.LockedUntil.Value.ToUniversalTime() - DateTime.UtcNow).TotalMinutes + 1;
                 return (false, $"Cuenta bloqueada. Espere {mins} minuto(s).", null);
             }
 
-            // Verifica el hash nativo de .NET
             var result = _hasher.VerifyHashedPassword(user, user.PasswordHash, password);
 
             if (result == PasswordVerificationResult.Failed)
             {
-                user.FailedAttempts++;
+                int nuevosIntentos = user.FailedAttempts + 1;
+                DateTime? nuevoBloqueo = null;
 
-                if (user.FailedAttempts >= 3)
+                if (nuevosIntentos >= 3)
                 {
-                    user.LockedUntil = DateTime.UtcNow.AddMinutes(5);
-                    _db.SaveChanges();
-                    return (false, "Demasiados intentos. Cuenta bloqueada por 5 minutos.", null);
+                    nuevoBloqueo = DateTime.UtcNow.AddMinutes(5);
                 }
 
-                _db.SaveChanges();
-                return (false, $"Contraseña incorrecta. Intento {user.FailedAttempts}/3.", null);
+                // Actualización selectiva para no tocar ni limpiar columnas de tokens de recuperación u OTPs
+                await _supabase.From<User>()
+                    .Where(x => x.Id == user.Id)
+                    .Set(x => x.FailedAttempts, nuevosIntentos)
+                    .Set(x => x.LockedUntil, nuevoBloqueo)
+                    .Update();
+
+                return (false, nuevosIntentos >= 3 ? "Cuenta bloqueada." : "Contraseña incorrecta.", null);
             }
 
-            // Si entra aquí, la contraseña es correcta. 
-            // Reiniciamos intentos y limpiamos bloqueos.
-            user.FailedAttempts = 0;
-            user.LockedUntil = null;
-            _db.SaveChanges();
+            // Actualización selectiva al entrar con éxito para dejar intacto el ResetToken u OtpCode si existen
+            await _supabase.From<User>()
+                .Where(x => x.Id == user.Id)
+                .Set(x => x.FailedAttempts, 0)
+                .Set(x => x.LockedUntil, null)
+                .Update();
+
             return (true, "OK", user);
+        }
+
+        // ==========================================
+        // RECUPERACIÓN DE CONTRASEÑA
+        // ==========================================
+
+        public async Task<(bool userExists, string token)> GeneratePasswordResetToken(string email)
+        {
+            if (string.IsNullOrEmpty(email)) return (false, "");
+            email = email.Trim().ToLower();
+
+            var user = await _supabase.From<User>()
+                .Filter("Email", Operator.Equals, email)
+                .Single();
+
+            if (user == null) return (false, "");
+
+            string token = Guid.NewGuid().ToString();
+
+            await _supabase.From<User>()
+                .Where(x => x.Id == user.Id)
+                .Set(x => x.ResetToken, token)
+                .Set(x => x.ResetTokenExpiry, DateTime.UtcNow.AddMinutes(20))
+                .Update();
+
+            return (true, token);
+        }
+
+        public async Task<bool> ResetPassword(string email, string token, string newPassword)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(token)) return false;
+            email = email.Trim().ToLower();
+
+            var user = await _supabase.From<User>()
+                .Filter("Email", Operator.Equals, email)
+                .Single();
+
+            if (user == null) return false;
+            if (user.ResetToken != token) return false;
+
+            // Comparación limpia en formato UTC
+            if (!user.ResetTokenExpiry.HasValue || user.ResetTokenExpiry.Value.ToUniversalTime() < DateTime.UtcNow)
+                return false;
+
+            string newPasswordHash = _hasher.HashPassword(user, newPassword);
+
+            await _supabase.From<User>()
+                .Where(x => x.Id == user.Id)
+                .Set(x => x.PasswordHash, newPasswordHash)
+                .Set(x => x.ResetToken, null)
+                .Set(x => x.ResetTokenExpiry, null)
+                .Update();
+
+            return true;
         }
     }
 }

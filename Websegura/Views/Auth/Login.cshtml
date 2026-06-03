@@ -113,7 +113,7 @@
 
             @if (ViewBag.Error != null)
             {
-                <div class="alert alert-danger d-flex align-items-center role="alert" style="background: rgba(220, 53, 69, 0.15); border-color: rgba(220, 53, 69, 0.3); color: #ea868f; border-radius: 10px;">
+                <div class="alert alert-danger d-flex align-items-center" role="alert" ...>
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
                     <div class="small">@ViewBag.Error</div>
                 </div>
@@ -139,6 +139,9 @@
                 <a href="/Auth/Register" class="register-link small">
                     ¿No tienes cuenta? <span class="fw-semibold text-decoration-underline">Regístrate</span>
                 </a>
+            </div>
+            <div class="text-end mb-3">
+                <a href="/Auth/ForgotPassword" style="color: #a0aed0; text-decoration: none;" class="small">¿Olvidaste tu contraseña?</a>
             </div>
 
         </div>
