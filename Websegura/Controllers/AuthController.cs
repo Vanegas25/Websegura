@@ -111,7 +111,7 @@ namespace Websegura.Controllers
             HttpContext.Session.Remove(sessionKeyIntentos);
             HttpContext.Session.Remove(sessionKeyBloqueo);
 
-            // 4. FLUJO SEGURO DE OTP: Primero fijamos la sesión, luego creamos el OTP asíncrono
+            // 4. FLUJO SEGURO DE OTP
             HttpContext.Session.SetInt32("TempUserId", (int)user!.Id);
             var otp = await _otpService.GenerateOtp((int)user.Id);
 
@@ -126,12 +126,10 @@ namespace Websegura.Controllers
             catch (System.Exception ex)
             {
                 _log.Log("FALLO_ENVIO_CORREO", model.Username, $"Error: {ex.Message}");
-                ViewBag.Error = "Hubo un problema al enviar el código.";
+                // ← Muestra el error exacto temporalmente para depuración
+                ViewBag.Error = $"Error detallado: {ex.Message}";
                 return View(model);
             }
-
-            TempData["OtpCode"] = otp;
-            TempData["OtpUser"] = model.Username;
 
             return RedirectToAction("Verify2FA");
         }
@@ -200,7 +198,7 @@ namespace Websegura.Controllers
                 catch (System.Exception ex)
                 {
                     _log.Log("FALLO_ENVIO_RESET", model.Email, $"Error: {ex.Message}");
-                    ViewBag.Error = "Hubo un problema al enviar el correo de recuperación.";
+                    ViewBag.Error = $"Error detallado: {ex.Message}";
                     return View(model);
                 }
             }
@@ -216,11 +214,8 @@ namespace Websegura.Controllers
         public IActionResult ResetPassword(string token, string email)
         {
             if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(email))
-            {
                 return RedirectToAction("Login");
-            }
 
-            // Parche definitivo: Decodificamos strings para evitar roturas por caracteres especiales de navegadores
             var cleanToken = Uri.UnescapeDataString(token);
             var cleanEmail = Uri.UnescapeDataString(email);
 
@@ -248,7 +243,6 @@ namespace Websegura.Controllers
             }
 
             _log.Log("RESET_PASS_EXITOSO", model.Email, "Contraseña restablecida correctamente.");
-
             TempData["SuccessMessage"] = "Tu contraseña ha sido restablecida con éxito. Ya puedes iniciar sesión.";
             return RedirectToAction("Login");
         }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Websegura")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4179afebf2dbd08010e2e4e02f6fe2851596a6af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f29ad289acdc3cc2c37e189db1c0f1f6ac87dca4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Websegura")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Websegura")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

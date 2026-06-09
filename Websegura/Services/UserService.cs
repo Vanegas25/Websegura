@@ -69,7 +69,6 @@ namespace Websegura.Services
                     nuevoBloqueo = DateTime.UtcNow.AddMinutes(5);
                 }
 
-                // Actualización selectiva para no tocar ni limpiar columnas de tokens de recuperación u OTPs
                 await _supabase.From<User>()
                     .Where(x => x.Id == user.Id)
                     .Set(x => x.FailedAttempts, nuevosIntentos)
@@ -79,14 +78,18 @@ namespace Websegura.Services
                 return (false, nuevosIntentos >= 3 ? "Cuenta bloqueada." : "Contraseña incorrecta.", null);
             }
 
-            // Actualización selectiva al entrar con éxito para dejar intacto el ResetToken u OtpCode si existen
+            // ✅ Fix aplicado aquí
             await _supabase.From<User>()
                 .Where(x => x.Id == user.Id)
                 .Set(x => x.FailedAttempts, 0)
                 .Set(x => x.LockedUntil, null)
                 .Update();
 
-            return (true, "OK", user);
+            var usuarioFinal = await _supabase.From<User>()
+                .Filter("Id", Operator.Equals, user.Id.ToString())
+                .Single();
+
+            return (true, "OK", usuarioFinal);
         }
 
         // ==========================================
@@ -127,7 +130,6 @@ namespace Websegura.Services
             if (user == null) return false;
             if (user.ResetToken != token) return false;
 
-            // Comparación limpia en formato UTC
             if (!user.ResetTokenExpiry.HasValue || user.ResetTokenExpiry.Value.ToUniversalTime() < DateTime.UtcNow)
                 return false;
 

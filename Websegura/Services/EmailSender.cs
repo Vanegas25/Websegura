@@ -22,7 +22,7 @@ namespace Websegura.Services
                 await client.ConnectAsync("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
 
                 // Autenticar con tu correo y contraseña de aplicación de 16 letras
-                await client.AuthenticateAsync("vanegasjorge731@gmail.com", "fibutuulmraaaqbb");
+                await client.AuthenticateAsync("vanegasjorge731@gmail.com", "eyvn zcsb qfqu yvlt");
 
                 // Enviar el correo
                 await client.SendAsync(mimeMessage);

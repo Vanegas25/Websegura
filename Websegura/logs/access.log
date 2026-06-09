@@ -188,3 +188,34 @@
 [2026-06-03 14:25:01] [ACCESO_EXITOSO] Usuario: 1 | 2FA validado correctamente.
 [2026-06-03 14:25:38] [LOGOUT] Usuario: 1 | Sesión cerrada.
 [2026-06-03 15:25:07] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-03 23:11:12] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-03 23:12:28] [REGISTRO] Usuario: manuel | Usuario registrado exitosamente.
+[2026-06-03 23:12:34] [OTP_GENERADO] Usuario: manuel | Código OTP generado en el servidor.
+[2026-06-09 14:36:17] [REGISTRO] Usuario: Jorge | Usuario registrado exitosamente.
+[2026-06-09 14:36:23] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-09 14:36:27] [FALLO_ENVIO_CORREO] Usuario: Jorge | Error: Error crítico en MailKit: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 71dfb90a1353d-5a6d6fb9ca0sm19333629e0c.6 - gsmtp
+[2026-06-09 14:36:37] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-09 14:36:39] [FALLO_ENVIO_CORREO] Usuario: Jorge | Error: Error crítico en MailKit: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials ada2fe7eead31-6eb649b54e0sm17081596137.9 - gsmtp
+[2026-06-09 14:37:26] [FALLO_ENVIO_RESET] Usuario: vanegasjorge731@gmail.com | Error: Error crítico en MailKit: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials ada2fe7eead31-6eb649b710csm17135216137.7 - gsmtp
+[2026-06-09 14:52:25] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-09 14:52:31] [FALLO_ENVIO_CORREO] Usuario: Jorge | Error: Error crítico en MailKit: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 71dfb90a1353d-5a6dc44d233sm17010822e0c.10 - gsmtp
+[2026-06-09 15:00:31] [FALLO_LOGIN] Usuario: Jorge | Contraseña incorrecta.
+[2026-06-09 15:00:40] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-09 15:00:43] [FALLO_ENVIO_CORREO] Usuario: Jorge | Error: Error crítico en MailKit: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials ada2fe7eead31-6eb66965b8bsm17595415137.12 - gsmtp
+[2026-06-09 15:04:28] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-09 15:04:31] [FALLO_ENVIO_CORREO] Usuario: Jorge | Error: Error crítico en MailKit: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials ada2fe7eead31-6eb551b4c56sm16972702137.2 - gsmtp
+[2026-06-09 15:12:35] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-09 15:12:38] [FALLO_ENVIO_CORREO] Usuario: Jorge | Error: Error crítico en MailKit: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a1e0cc1a2514c-96413f5b33bsm16140152241.2 - gsmtp
+[2026-06-09 15:22:37] [FALLO_LOGIN] Usuario: Jorge | Contraseña incorrecta.
+[2026-06-09 15:22:44] [OTP_GENERADO] Usuario: Jorge | Código OTP generado en el servidor.
+[2026-06-09 15:23:05] [ACCESO_EXITOSO] Usuario: 16 | 2FA validado correctamente.
+[2026-06-09 15:23:27] [LOGOUT] Usuario: 16 | Sesión cerrada.
+[2026-06-09 15:24:13] [REGISTRO] Usuario: manuel | Usuario registrado exitosamente.
+[2026-06-09 15:24:19] [OTP_GENERADO] Usuario: manuel | Código OTP generado en el servidor.
