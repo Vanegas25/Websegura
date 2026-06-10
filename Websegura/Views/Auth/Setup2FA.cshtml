@@ -1,0 +1,203 @@
+﻿@model Websegura.Models.OtpViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Configurar Authenticator - WebSegura</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+            :root {
+                --bg-gradient: radial-gradient(circle at 50% 50%, #1a162b, #08060f);
+                --card-bg: rgba(25, 22, 43, 0.75);
+                --primary-accent: #ff477e;
+                --primary-hover: #e03265;
+                --input-focus-glow: rgba(255, 71, 126, 0.2);
+            }
+
+            body {
+                background: var(--bg-gradient);
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Segoe UI', system-ui, sans-serif;
+            }
+
+            .card-2fa {
+                background: var(--card-bg);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.075);
+                border-radius: 20px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+                width: 100%;
+                max-width: 440px;
+            }
+
+            .qr-wrapper {
+                background: #fff;
+                border-radius: 12px;
+                padding: 12px;
+                display: inline-block;
+            }
+
+            .step-badge {
+                background: rgba(255, 71, 126, 0.15);
+                color: var(--primary-accent);
+                border-radius: 50%;
+                width: 26px;
+                height: 26px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.8rem;
+                font-weight: 700;
+                flex-shrink: 0;
+            }
+
+            .form-floating > .form-control {
+                background-color: rgba(13, 11, 26, 0.7);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                color: #fff;
+                border-radius: 10px;
+                font-size: 1.5rem;
+                font-weight: 600;
+                letter-spacing: 8px;
+                text-align: center;
+            }
+
+                .form-floating > .form-control:focus {
+                    background-color: rgba(13, 11, 26, 0.9);
+                    border-color: var(--primary-accent);
+                    box-shadow: 0 0 0 4px var(--input-focus-glow);
+                    color: #fff;
+                }
+
+            .form-floating > label {
+                color: #a0aed0;
+                width: 100%;
+                text-align: center;
+                letter-spacing: normal;
+            }
+
+            .form-floating > .form-control:focus ~ label,
+            .form-floating > .form-control:not(:placeholder-shown) ~ label {
+                color: var(--primary-accent);
+                text-align: left;
+                padding-left: 12px;
+            }
+
+            .btn-custom {
+                background: linear-gradient(135deg, var(--primary-accent), #ff6b8b);
+                border: none;
+                color: white;
+                font-weight: 600;
+                border-radius: 10px;
+                padding: 12px;
+                transition: all 0.3s ease;
+            }
+
+                .btn-custom:hover {
+                    background: linear-gradient(135deg, var(--primary-hover), var(--primary-accent));
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(255, 71, 126, 0.4);
+                    color: white;
+                }
+
+            .cancel-link {
+                color: #a0aed0;
+                text-decoration: none;
+                transition: color 0.2s ease;
+            }
+
+                .cancel-link:hover {
+                    color: var(--primary-accent);
+                }
+    </style>
+</head>
+<body>
+
+    <div class="container d-flex justify-content-center p-3">
+        <div class="card-2fa p-4 p-sm-5">
+
+            <div class="text-center mb-4">
+                <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                     style="width: 60px; height: 60px; background-color: rgba(255, 71, 126, 0.15);">
+                    <i class="bi bi-qr-code fs-3" style="color: var(--primary-accent);"></i>
+                </div>
+                <h2 class="fw-bold text-white mb-1" style="letter-spacing: -0.5px;">Configura tu Authenticator</h2>
+                <p class="text-white-50 small">Solo necesitas hacer esto una vez</p>
+            </div>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger d-flex align-items-center mb-4" role="alert"
+                     style="background: rgba(220, 53, 69, 0.15); border-color: rgba(220, 53, 69, 0.3); color: #ea868f; border-radius: 10px;">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    <div class="small">@ViewBag.Error</div>
+                </div>
+            }
+
+            <div class="d-flex flex-column gap-2 mb-4">
+                <div class="d-flex align-items-start gap-2">
+                    <span class="step-badge mt-1">1</span>
+                    <p class="text-white-50 small mb-0">Descarga <strong class="text-white">Microsoft Authenticator</strong> o <strong class="text-white">Google Authenticator</strong> en tu celular.</p>
+                </div>
+                <div class="d-flex align-items-start gap-2">
+                    <span class="step-badge mt-1">2</span>
+                    <p class="text-white-50 small mb-0">Escanea el código QR desde la app.</p>
+                </div>
+                <div class="d-flex align-items-start gap-2">
+                    <span class="step-badge mt-1">3</span>
+                    <p class="text-white-50 small mb-0">Ingresa el código de 6 dígitos que te genera la app.</p>
+                </div>
+            </div>
+
+            <div class="text-center mb-4">
+                @if (ViewBag.QrCode != null)
+                {
+                    <div class="qr-wrapper">
+                        <img src="data:image/png;base64,@ViewBag.QrCode" alt="QR Code" width="180" height="180" />
+                    </div>
+                    <p class="text-white-50 small mt-3 mb-1">¿No puedes escanear el QR?</p>
+                    <p class="text-white-50 small mb-1">Ingresa este código manualmente en tu app:</p>
+                    <code class="d-block p-2 rounded mt-1" style="background: rgba(255,255,255,0.07); color: var(--primary-accent); letter-spacing: 3px; font-size: 0.9rem; word-break: break-all;">
+                        @ViewBag.TotpSecret
+                    </code>
+                }
+            </div>
+
+            <form method="post" autocomplete="off">
+                <div class="form-floating mb-4">
+                    <input asp-for="Code" type="text" class="form-control" id="floatingOtp"
+                           placeholder="000000" maxlength="6" pattern="\d{6}" required
+                           autocomplete="one-time-code" inputmode="numeric" />
+                    <label for="floatingOtp">Código de Verificación</label>
+                </div>
+                <button type="submit" class="btn btn-custom w-100 py-2 mb-3 shadow-sm">
+                    Activar Authenticator <i class="bi bi-shield-check ms-1"></i>
+                </button>
+            </form>
+
+            <div class="text-center mt-3">
+                <a href="/Auth/Logout" class="cancel-link small">
+                    <i class="bi bi-arrow-left me-1"></i> Cancelar y volver al Login
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('floatingOtp').addEventListener('input', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    </script>
+</body>
+</html>

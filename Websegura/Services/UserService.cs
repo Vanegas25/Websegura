@@ -31,7 +31,8 @@ namespace Websegura.Services
             var user = new User
             {
                 Username = username,
-                Email = email
+                Email = email,
+                TwoFactorEnabled = false
             };
 
             user.PasswordHash = _hasher.HashPassword(user, password);
@@ -143,6 +144,13 @@ namespace Websegura.Services
                 .Update();
 
             return true;
+        }
+
+        public async Task<User?> GetById(int userId)
+        {
+            return await _supabase.From<User>()
+                .Filter("Id", Operator.Equals, userId.ToString())
+                .Single();
         }
     }
 }

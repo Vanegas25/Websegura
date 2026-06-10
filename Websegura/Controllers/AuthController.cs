@@ -70,7 +70,6 @@ namespace Websegura.Controllers
                 {
                     TimeSpan restantes = tiempoBloqueo - DateTime.Now;
                     string msgBloqueo = $"Tu acceso está bloqueado temporalmente por exceso de intentos. Inténtalo de nuevo en {restantes.Minutes}m y {restantes.Seconds}s.";
-
                     _log.Log("INTENTO_BLOQUEADO", model.Username, "El usuario intentó ingresar estando suspendido.");
                     ViewBag.Error = msgBloqueo;
                     return View(model);
@@ -107,31 +106,59 @@ namespace Websegura.Controllers
                 return View(model);
             }
 
-            // 3. Login correcto: Limpiar historial de intentos del usuario
+            // 3. Login correcto: limpiar historial de intentos
             HttpContext.Session.Remove(sessionKeyIntentos);
             HttpContext.Session.Remove(sessionKeyBloqueo);
 
-            // 4. FLUJO SEGURO DE OTP
+            // 4. FLUJO TOTP
             HttpContext.Session.SetInt32("TempUserId", (int)user!.Id);
-            var otp = await _otpService.GenerateOtp((int)user.Id);
+            _log.Log("LOGIN_EXITOSO", model.Username, "Credenciales válidas, redirigiendo a 2FA.");
 
-            _log.Log("OTP_GENERADO", model.Username, "Código OTP generado en el servidor.");
+            // Si ya configuró el Authenticator, pedir el código
+            if (user.TwoFactorEnabled == true)
+                return RedirectToAction("Verify2FA");
 
-            try
+            // Si es la primera vez, mostrar el QR para configurar
+            return RedirectToAction("Setup2FA");
+        }
+
+        // ==========================================
+        // CONFIGURACIÓN INICIAL DEL AUTHENTICATOR
+        // ==========================================
+        [HttpGet]
+        public async Task<IActionResult> Setup2FA()
+        {
+            var userId = HttpContext.Session.GetInt32("TempUserId");
+            if (userId == null) return RedirectToAction("Login");
+
+            var user = await _userService.GetById(userId.Value);
+            if (user == null) return RedirectToAction("Login");
+
+            var qrBase64 = await _otpService.GenerateSetupQr(userId.Value, user.Email);
+            ViewBag.QrCode = qrBase64;
+            ViewBag.TotpSecret = await _otpService.GetSecret(userId.Value); // agregar esto
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Setup2FA(OtpViewModel model)
+        {
+            var userId = HttpContext.Session.GetInt32("TempUserId");
+            if (userId == null) return RedirectToAction("Login");
+
+            bool ok = await _otpService.EnableTotp(userId.Value, model.Code);
+            if (!ok)
             {
-                string asunto = "Código de verificación de 2 pasos - WebSegura";
-                string cuerpo = $"<p>Tu código de seguridad es: <strong>{otp}</strong></p>";
-                await _emailSender.SendEmailAsync(user.Email, asunto, cuerpo);
-            }
-            catch (System.Exception ex)
-            {
-                _log.Log("FALLO_ENVIO_CORREO", model.Username, $"Error: {ex.Message}");
-                // ← Muestra el error exacto temporalmente para depuración
-                ViewBag.Error = $"Error detallado: {ex.Message}";
+                var user = await _userService.GetById(userId.Value);
+                ViewBag.QrCode = await _otpService.GenerateSetupQr(userId.Value, user!.Email);
+                ViewBag.Error = "Código incorrecto. Asegúrate de escanear el QR primero.";
                 return View(model);
             }
 
-            return RedirectToAction("Verify2FA");
+            _log.Log("2FA_CONFIGURADO", userId.ToString()!, "Authenticator configurado correctamente.");
+            HttpContext.Session.Remove("TempUserId");
+            HttpContext.Session.SetInt32("UserId", userId.Value);
+            return RedirectToAction("Index", "Dashboard");
         }
 
         // ==========================================
@@ -151,15 +178,15 @@ namespace Websegura.Controllers
             var userId = HttpContext.Session.GetInt32("TempUserId");
             if (userId == null) return RedirectToAction("Login");
 
-            if (await _otpService.ValidateOtp(userId.Value, model.Code))
+            if (await _otpService.ValidateTotp(userId.Value, model.Code))
             {
                 HttpContext.Session.Remove("TempUserId");
                 HttpContext.Session.SetInt32("UserId", userId.Value);
-                _log.Log("ACCESO_EXITOSO", userId.ToString()!, "2FA validado correctamente.");
+                _log.Log("ACCESO_EXITOSO", userId.ToString()!, "2FA TOTP validado correctamente.");
                 return RedirectToAction("Index", "Dashboard");
             }
 
-            _log.Log("FALLO_2FA", userId.ToString()!, "Código OTP inválido o expirado.");
+            _log.Log("FALLO_2FA", userId.ToString()!, "Código TOTP inválido o expirado.");
             ViewBag.Error = "Código inválido o expirado.";
             return View(model);
         }

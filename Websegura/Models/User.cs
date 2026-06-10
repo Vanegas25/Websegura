@@ -7,7 +7,7 @@ namespace Websegura.Models
     [Table("Users")]
     public class User : BaseModel
     {
-        [PrimaryKey("Id", false)] // Cambia a true si lo maneja Postgres automáticamente
+        [PrimaryKey("Id", false)]
         public long Id { get; set; }
 
         [Column("Username")]
@@ -25,17 +25,16 @@ namespace Websegura.Models
         [Column("LockedUntil")]
         public DateTime? LockedUntil { get; set; }
 
-        [Column("OtpCode")]
-        public string? OtpCode { get; set; }
-
-        [Column("OtpExpiry")]
-        public DateTime? OtpExpiry { get; set; }
-
-        // Nuevas columnas que agregamos en Supabase
         [Column("ResetToken")]
         public string? ResetToken { get; set; }
 
         [Column("ResetTokenExpiry")]
         public DateTime? ResetTokenExpiry { get; set; }
+
+        [Column("TotpSecret")]
+        public string? TotpSecret { get; set; }
+
+        [Column("TwoFactorEnabled")]
+        public bool? TwoFactorEnabled { get; set; }
     }
 }

@@ -219,3 +219,26 @@
 [2026-06-09 15:23:27] [LOGOUT] Usuario: 16 | Sesión cerrada.
 [2026-06-09 15:24:13] [REGISTRO] Usuario: manuel | Usuario registrado exitosamente.
 [2026-06-09 15:24:19] [OTP_GENERADO] Usuario: manuel | Código OTP generado en el servidor.
+[2026-06-10 05:01:45] [REGISTRO] Usuario: joseph | Usuario registrado exitosamente.
+[2026-06-10 05:01:50] [LOGIN_EXITOSO] Usuario: joseph | Credenciales válidas, redirigiendo a 2FA.
+[2026-06-10 05:02:23] [2FA_CONFIGURADO] Usuario: 23 | Authenticator configurado correctamente.
+[2026-06-10 05:02:31] [LOGOUT] Usuario: 23 | Sesión cerrada.
+[2026-06-10 05:02:35] [LOGIN_EXITOSO] Usuario: joseph | Credenciales válidas, redirigiendo a 2FA.
+[2026-06-10 05:02:42] [ACCESO_EXITOSO] Usuario: 23 | 2FA TOTP validado correctamente.
+[2026-06-10 05:02:44] [LOGOUT] Usuario: 23 | Sesión cerrada.
+[2026-06-10 05:02:48] [LOGIN_EXITOSO] Usuario: joseph | Credenciales válidas, redirigiendo a 2FA.
+[2026-06-10 05:02:51] [FALLO_2FA] Usuario: 23 | Código TOTP inválido o expirado.
+[2026-06-10 05:02:53] [FALLO_2FA] Usuario: 23 | Código TOTP inválido o expirado.
+[2026-06-10 05:02:54] [FALLO_2FA] Usuario: 23 | Código TOTP inválido o expirado.
+[2026-06-10 05:03:30] [REGISTRO] Usuario: prueba | Usuario registrado exitosamente.
+[2026-06-10 05:03:38] [LOGIN_EXITOSO] Usuario: prueba | Credenciales válidas, redirigiendo a 2FA.
+[2026-06-10 05:07:00] [LOGIN_EXITOSO] Usuario: prueba | Credenciales válidas, redirigiendo a 2FA.
+[2026-06-10 05:08:01] [LOGIN_EXITOSO] Usuario: prueba | Credenciales válidas, redirigiendo a 2FA.
+[2026-06-10 05:09:29] [2FA_CONFIGURADO] Usuario: 24 | Authenticator configurado correctamente.
+[2026-06-10 05:09:32] [LOGOUT] Usuario: 24 | Sesión cerrada.
+[2026-06-10 05:10:34] [REGISTRO] Usuario: prueba2 | Usuario registrado exitosamente.
+[2026-06-10 05:10:39] [LOGIN_EXITOSO] Usuario: prueba2 | Credenciales válidas, redirigiendo a 2FA.
+[2026-06-10 05:10:59] [2FA_CONFIGURADO] Usuario: 25 | Authenticator configurado correctamente.
+[2026-06-10 05:11:03] [LOGOUT] Usuario: 25 | Sesión cerrada.
+[2026-06-10 05:11:06] [LOGIN_EXITOSO] Usuario: prueba2 | Credenciales válidas, redirigiendo a 2FA.
+[2026-06-10 05:11:11] [ACCESO_EXITOSO] Usuario: 25 | 2FA TOTP validado correctamente.
